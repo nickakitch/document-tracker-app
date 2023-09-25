@@ -3,6 +3,7 @@ import { defineConfig } from "vitepress";
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   base: "/docs/",
+  outDir: "./.vitepress/dist/docs",
   title: "Document Tracker App",
   description: "A document tracking app",
   themeConfig: {
