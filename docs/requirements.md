@@ -89,6 +89,7 @@ This user is created when seeding the database.
   - Documents that have expired but have not yet been archived
 - The notification should be sent via email
   - You may use the [log driver](https://laravel.com/docs/10.x/mail#log-driver) for simplicity
+- The email does not need any custom styling - please stick to a plaintext/markdown email
 
 ### Updating Documents
 
