@@ -1,85 +1,13 @@
-# Markdown Extension Examples
+# Existing Endpoints
 
-This page demonstrates some of the built-in markdown extensions provided by VitePress.
+The following endpoints have been defined for you however the logic within may not be complete;
 
-## Syntax Highlighting
-
-VitePress provides Syntax Highlighting powered by [Shiki](https://github.com/shikijs/shiki), with additional features like line-highlighting:
-
-**Input**
-
-````
-```js{4}
-export default {
-  data () {
-    return {
-      msg: 'Highlighted!'
-    }
-  }
-}
-```
-````
-
-**Output**
-
-```js{4}
-export default {
-  data () {
-    return {
-      msg: 'Highlighted!'
-    }
-  }
-}
+```php
+Route::get('documents', [DocumentController::class, 'index']);
+Route::post('documents', [DocumentController::class, 'store']);
+Route::get('documents/{document}', [DocumentController::class, 'show']);
 ```
 
-## Custom Containers
-
-**Input**
-
-```md
-::: info
-This is an info box.
-:::
-
-::: tip
-This is a tip.
-:::
-
-::: warning
-This is a warning.
-:::
-
-::: danger
-This is a dangerous warning.
-:::
-
-::: details
-This is a details block.
-:::
-```
-
-**Output**
-
-::: info
-This is an info box.
-:::
-
-::: tip
-This is a tip.
-:::
-
-::: warning
-This is a warning.
-:::
-
-::: danger
-This is a dangerous warning.
-:::
-
-::: details
-This is a details block.
-:::
-
-## More
-
-Check out the documentation for the [full list of markdown extensions](https://vitepress.dev/guide/markdown).
+- The API endpoints are nested under the `api` prefix - for example `/api/documents/5`.
+- Routes are protected using the Sanctum package from Laravel.
+- You should not need to add or edit any authentication routes. You can log in by posting to the `/login` endpoint which is provided by Laravel Fortify.
