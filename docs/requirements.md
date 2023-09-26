@@ -41,10 +41,11 @@ The points below have been listed in order of priority.
 - It's important that users can only view their own documents for privacy reasons - Google Drives are often shared across an organisation
 - You can't restrict uploads to Google Drive to just PDFs
 - It's hard to rename a file when uploading to Google Drive
-- It is difficult to keep track of documents that will expire soon (within 7 days)
-- It is time-consuming to have to add a calendar invited to notify the user when the document expires each time a document is uploaded
-- Calendar invites are not always reliable and do not provide much information about the documents that are expiring
-- It is difficult to keep track of documents that have expired, but we have not yet done anything with them - i.e. archived them
+- It is difficult to view documents that will expire soon (within 7 days)
+- Calendar events are often created to remind users that a document is expiring soon, but it is difficult to keep track of these events
+  - an email notification each morning with documents expiring soon would be much better
+- It is difficult to view documents that have expired, but we have not yet done anything with them - i.e. archived them
+- There is no easy way to archive documents that are expired without deleting them
 - It's hard to see all documents and their expiry dates at a glance
 
 ## Technical details
