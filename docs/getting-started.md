@@ -23,7 +23,7 @@ The Vue SPA (frontend) is available at [https://github.com/astalty/document-trac
 Please view the `README.md` file for more information.
 
 :::warning Important note about domains
-As we use Laravel Sanctum for SPA authentication, the domain configuration is important. The API and SPA must share the same top level domain. You should service the front end from `app.document-tracker.test` and the API from `api.app.document-tracker-test`.
+As we use Laravel Sanctum for SPA authentication, the domain configuration is important. The API and SPA must share the same top level domain. You should serve the front end from `app.document-tracker.test` and the API from `api.app.document-tracker-test`.
 :::
 
 ## Submitting your solution
