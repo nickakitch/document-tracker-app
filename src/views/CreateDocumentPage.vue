@@ -17,6 +17,8 @@
             type="date"
             id="expiryDate"
             v-model="form.expiryDate"
+            :min="DateTime.now().plus({ days: 8 }).toISODate()"
+            :max="DateTime.now().plus({ years: 5 }).toISODate()"
             required
             class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
         />
@@ -99,7 +101,7 @@ const submitForm = async () => {
     const formData = new FormData();
 
     formData.append('name', form.value.name);
-    formData.append('expires_at', Math.floor(DateTime.fromFormat(form.value.expiryDate, 'yyyy-mm-dd').toSeconds()).toString());
+    formData.append('expires_at', Math.floor(DateTime.fromFormat(form.value.expiryDate, 'yyyy-MM-dd').toSeconds()).toString());
     formData.append('file', form.value.file);
 
     await documentsClient.createDocument(formData);
