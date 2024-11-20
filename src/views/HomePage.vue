@@ -21,11 +21,44 @@
                 <table class="min-w-full divide-y divide-gray-300">
                   <thead>
                     <tr>
-                      <!--  -->
+                      <th
+                        scope="col"
+                        class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+                      >
+                        Document Name
+                      </th>
+                      <th
+                        scope="col"
+                        class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+                      >
+                        Expiry Date
+                      </th>
+                      <th
+                        scope="col"
+                      >
+                      </th>
                     </tr>
                   </thead>
                   <tbody class="divide-y divide-gray-200">
-                    <!--  -->
+                    <tr v-for="document in documents" :key="document.id">
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-900">
+                          {{ document.name }}
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-900">
+                          {{ DateTime.fromSeconds(document.expiresAt).toLocaleString(DateTime.DATE_MED) }}
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <a
+                          href="#"
+                          class="text-indigo-600 hover:text-indigo-900"
+                          >Download</a
+                        >
+                      </td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -38,5 +71,16 @@
 </template>
 
 <script setup lang="ts">
-//
+import {useQuery} from "@tanstack/vue-query";
+import { Document, documentsClient } from "../client.ts";
+import { DateTime } from "luxon";
+
+const { data: documents } = useQuery<Document[]>({
+  queryKey: ['documents'],
+  queryFn: async () => {
+    const response = await documentsClient.getDocuments();
+    return response.data.data;
+  },
+});
+
 </script>

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { DateTime } from 'luxon';
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -19,13 +20,28 @@ export const authClient = {
   logout: () => api.post("/logout"),
 };
 
-type Document = {
+export type Document = {
   id: number;
+  ownerId: number;
   name: string;
-  expires_at: string;
+  path: string;
+  expiresAt: number;
+  archivedAt: number | null;
+  createdAt: number;
+  updatedAt: number;
 };
+
 export const documentsClient = {
-  getDocuments: () => api.get<{ data: Document[] }>("/api/documents"),
+  getDocuments: () => {
+    const expiresBefore: number = Math.floor(DateTime.now()
+        .plus({ days: 7 })
+        .endOf('day')
+        .toSeconds());
+
+    return api.get<{ data: Document[] }>("/api/documents", {
+      params: { expires_before: expiresBefore },
+    })
+  },
   getDocument: (id: number) =>
     api.get<{ data: Document }>(`/api/documents/${id}`),
   archiveDocument: (id: number) => api.post(`/api/documents/${id}/archive`),
