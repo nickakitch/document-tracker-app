@@ -97,8 +97,9 @@ const submitForm = async () => {
 
   try {
     const formData = new FormData();
+
     formData.append('name', form.value.name);
-    formData.append('expiryDate', Math.floor(DateTime.fromFormat(form.value.expiryDate, 'yyyy-MM-dd').toSeconds()).toString());
+    formData.append('expires_at', Math.floor(DateTime.fromFormat(form.value.expiryDate, 'yyyy-mm-dd').toSeconds()).toString());
     formData.append('file', form.value.file);
 
     await documentsClient.createDocument(formData);
