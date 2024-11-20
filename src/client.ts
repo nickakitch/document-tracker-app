@@ -47,6 +47,9 @@ export const documentsClient = {
         responseType: 'blob',
         withCredentials: true,
       }),
-  archiveDocument: (id: number) => api.post(`/api/documents/${id}/archive`),
+  archiveDocument: (id: number) => {
+    const archiveDate: number = Math.floor(DateTime.now().toSeconds());
+    return api.put(`/api/documents/${id}`, { archived_at: archiveDate })
+  },
   createDocument: (id: number) => api.post(`/api/documents/${id}`),
 };

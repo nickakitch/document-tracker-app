@@ -54,9 +54,15 @@
                       <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <a
                             href="#"
+                            @click.prevent="archiveDocument(document.id)"
+                            class="text-indigo-600 hover:text-indigo-900 mr-3"
+                        >Archive</a
+                        >
+                        <a
+                            href="#"
                             @click.prevent="downloadDocument(document.id, document.name)"
                             class="text-indigo-600 hover:text-indigo-900"
-                          >Download</a
+                        >Download</a
                         >
                       </td>
                     </tr>
@@ -96,6 +102,10 @@ const downloadDocument = async (id: number, name: string) => {
 
   document.body.removeChild(link);
   window.URL.revokeObjectURL(link.href);
+};
+
+const archiveDocument = async (id: number) => {
+  await documentsClient.archiveDocument(id);
 };
 
 </script>
