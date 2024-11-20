@@ -31,6 +31,12 @@ export type Document = {
   updatedAt: number;
 };
 
+export type createDocumentData = {
+    name: string;
+    expiresAt: number;
+    file: File;
+};
+
 export const documentsClient = {
   getDocuments: () => {
     const expiresBefore: number = Math.floor(DateTime.now()
@@ -51,5 +57,5 @@ export const documentsClient = {
     const archiveDate: number = Math.floor(DateTime.now().toSeconds());
     return api.put(`/api/documents/${id}`, { archived_at: archiveDate })
   },
-  createDocument: (id: number) => api.post(`/api/documents/${id}`),
+  createDocument: (formData: createDocumentData) => api.post(`/api/documents`, formData),
 };
