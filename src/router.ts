@@ -22,11 +22,6 @@ export const router = createRouter({
           path: "documents/create",
           component: () => import("./views/CreateDocumentPage.vue"),
         },
-        {
-          path: "documents/:documentId",
-          component: () => import("./views/ViewDocumentPage.vue"),
-          props: true,
-        },
       ],
       // beforeEnter: (_to, _from, next) => {
       //   //

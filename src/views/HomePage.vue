@@ -53,8 +53,9 @@
                       </td>
                       <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <a
-                          href="#"
-                          class="text-indigo-600 hover:text-indigo-900"
+                            href="#"
+                            @click.prevent="downloadDocument(document.id, document.name)"
+                            class="text-indigo-600 hover:text-indigo-900"
                           >Download</a
                         >
                       </td>
@@ -82,5 +83,19 @@ const { data: documents } = useQuery<Document[]>({
     return response.data.data;
   },
 });
+
+const downloadDocument = async (id: number, name: string) => {
+  const response = await documentsClient.getDocument(id);
+  const blob = new Blob([response.data], { type: 'application/pdf' });
+  const link = document.createElement('a');
+  link.href = window.URL.createObjectURL(blob);
+  link.download = `${name}`;
+
+  document.body.appendChild(link);
+  link.click();
+
+  document.body.removeChild(link);
+  window.URL.revokeObjectURL(link.href);
+};
 
 </script>

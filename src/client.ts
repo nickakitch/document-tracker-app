@@ -43,7 +43,10 @@ export const documentsClient = {
     })
   },
   getDocument: (id: number) =>
-    api.get<{ data: Document }>(`/api/documents/${id}`),
+      axios.get(`/api/documents/${id}`, {
+        responseType: 'blob',
+        withCredentials: true,
+      }),
   archiveDocument: (id: number) => api.post(`/api/documents/${id}/archive`),
   createDocument: (id: number) => api.post(`/api/documents/${id}`),
 };
